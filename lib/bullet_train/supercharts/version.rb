@@ -1,5 +1,5 @@
 module BulletTrain
-  module Start
+  module Supercharts
     VERSION = "0.1.0"
   end
 end

@@ -1,5 +1,5 @@
 module BulletTrain
-  module Start
+  module Supercharts
     class Engine < ::Rails::Engine
     end
   end

@@ -1,12 +1,12 @@
-require_relative "lib/bullet_train/start/version"
+require_relative "lib/bullet_train/supercharts/version"
 
 Gem::Specification.new do |spec|
-  spec.name = "bullet_train-start"
-  spec.version = BulletTrain::Start::VERSION
-  spec.authors = ["Andrew Culver"]
-  spec.email = ["andrew.culver@gmail.com"]
-  spec.homepage = "https://github.com/bullet-train-co/bullet_train-start"
-  spec.summary = "Bullet Train Start"
+  spec.name = "bullet_train-supercharts"
+  spec.version = BulletTrain::Supercharts::VERSION
+  spec.authors = ["Pascal Laliberté"]
+  spec.email = ["pascal@hey.com"]
+  spec.homepage = "https://github.com/supercharts-dev/bullet_train-supercharts"
+  spec.summary = "Bullet Train Supercharts"
   spec.description = spec.summary
   spec.license = "MIT"
 
@@ -22,5 +22,5 @@ Gem::Specification.new do |spec|
     Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
   end
 
-  spec.add_dependency "rails", ">= 7.0.0"
+  spec.add_dependency "rails", ">= 6.0.0"
 end

@@ -1,4 +1,4 @@
-# BulletTrain::Start
+# BulletTrain::Supercharts
 Short description and motivation.
 
 ## Usage
@@ -8,7 +8,7 @@ How to use my plugin.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem "bullet_train-start"
+gem "bullet_train-supercharts"
 ```
 
 And then execute:
@@ -18,7 +18,7 @@ $ bundle
 
 Or install it yourself as:
 ```bash
-$ gem install bullet_train-start
+$ gem install bullet_train-supercharts
 ```
 
 ## Contributing
