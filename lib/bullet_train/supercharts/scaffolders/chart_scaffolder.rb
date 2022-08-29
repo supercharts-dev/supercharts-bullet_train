@@ -1,3 +1,5 @@
+require "scaffolding/supercharts_chart_transformer"
+
 module BulletTrain
   module Supercharts
     module Scaffolders
@@ -22,7 +24,9 @@ module BulletTrain
           parent_models += ["Team"]
           parent_models = parent_models.map(&:classify).uniq
 
-          puts "This will scaffold a #{target_model} chart on a #{parent_models.join(' dashboard of a ')}. Super!"
+          transformer = Scaffolding::SuperchartsChartTransformer.new(target_model, parent_models)
+          
+          transformer.scaffold_chart
         end
       end
     end
