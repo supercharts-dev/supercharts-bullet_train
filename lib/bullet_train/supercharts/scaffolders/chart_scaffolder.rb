@@ -26,7 +26,7 @@ module BulletTrain
 
           transformer = Scaffolding::SuperchartsChartTransformer.new(target_model, parent_models)
           
-          transformer.scaffold_chart
+          transformer.scaffold_supercharts
         end
       end
     end
