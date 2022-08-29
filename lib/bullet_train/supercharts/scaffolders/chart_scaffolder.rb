@@ -16,8 +16,13 @@ module BulletTrain
             puts ""
             exit
           end
+          
+          target_model, parent_models = argv
+          parent_models = parent_models.split(",")
+          parent_models += ["Team"]
+          parent_models = parent_models.map(&:classify).uniq
 
-          puts "This will scaffold a chart. Super!"
+          puts "This will scaffold a #{target_model} chart on a #{parent_models.join(' dashboard of a ')}. Super!"
         end
       end
     end
