@@ -6,6 +6,9 @@
   "repository": "git@github.com:supercharts-dev/bullet_train-supercharts.git",
   "author": "Pascal Laliberté <pascal@hey.com>",
   "license": "MIT",
+  "devDependencies": {
+    "@hotwired/stimulus-webpack-helpers": "^1.0.1"
+  },
   "dependencies": {
     "@hotwired/stimulus": "^3.1.0",
     "d3": "^7.6.1"
