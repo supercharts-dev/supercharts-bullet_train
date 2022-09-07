@@ -1,4 +1,4 @@
-import SuperchartChartjsController from 'superchart-stimulus'
+import { SuperchartChartjsController } from '@supercharts/stimulus-base'
 import * as d3 from "d3"
 
 export default class extends SuperchartChartjsController {
