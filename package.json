@@ -1,5 +1,5 @@
 {
-  "name": "bullet_train-supercharts",
+  "name": "@supercharts/supercharts-bullet_train",
   "version": "0.1.0",
   "description": "Supercharts for Bullet Train - Scaffold a chart into your Bullet Train Rails app",
   "source": "app/javascript/index.js",
@@ -23,7 +23,7 @@
     "prerelease": "$npm_execpath run build",
     "release": "np --any-branch"
   },
-  "repository": "git@github.com:supercharts-dev/bullet_train-supercharts.git",
+  "repository": "git@github.com:supercharts-dev/supercharts-bullet_train.git",
   "author": "Pascal Laliberté <pascal@hey.com>",
   "license": "MIT",
   "browserslist": [
