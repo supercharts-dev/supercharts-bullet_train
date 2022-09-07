@@ -1,12 +1,12 @@
 require_relative "lib/bullet_train/supercharts/version"
 
 Gem::Specification.new do |spec|
-  spec.name = "bullet_train-supercharts"
+  spec.name = "supercharts-bullet_train"
   spec.version = BulletTrain::Supercharts::VERSION
   spec.authors = ["Pascal Laliberté"]
   spec.email = ["pascal@hey.com"]
-  spec.homepage = "https://github.com/supercharts-dev/bullet_train-supercharts"
-  spec.summary = "Bullet Train Supercharts"
+  spec.homepage = "https://github.com/supercharts-dev/supercharts-bullet_train"
+  spec.summary = "Supercharts for Bullet Train"
   spec.description = spec.summary
   spec.license = "MIT"
 
