@@ -1,10 +1,10 @@
 {
-  "name": "@supercharts/supercharts-bullet_train",
+  "name": "@supercharts/supercharts-bullet-train",
   "version": "0.1.0",
   "description": "Supercharts for Bullet Train - Scaffold a chart into your Bullet Train Rails app",
   "source": "app/javascript/index.js",
-  "module": "app/assets/javascripts/bullet_train-supercharts.esm.js",
-  "main": "app/assets/javascripts/bullet_train-supercharts.js",
+  "module": "app/assets/javascripts/supercharts-bullet-train.esm.js",
+  "main": "app/assets/javascripts/supercharts-bullet-train.js",
   "files": [
     "app/assets/javascripts/*.js",
     "app/assets/javascripts/*.js.map",
