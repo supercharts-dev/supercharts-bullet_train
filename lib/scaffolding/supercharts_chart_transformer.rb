@@ -8,6 +8,7 @@ class Scaffolding::SuperchartsChartTransformer < Scaffolding::SuperchartsTransfo
     files = [
       "./app/controllers/account/scaffolding/completely_concrete/charts/tangible_things_controller.rb",
       "./app/views/account/scaffolding/completely_concrete/charts/tangible_things",
+      "./app/views/shared/supercharts",
       ("./config/locales/en/scaffolding/completely_concrete/tangible_things.en.yml" unless cli_options["skip-locales"])
     ].compact
     
