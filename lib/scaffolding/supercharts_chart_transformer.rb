@@ -19,10 +19,7 @@ class Scaffolding::SuperchartsChartTransformer < Scaffolding::SuperchartsTransfo
       end
     end
     
-    unless cli_options["skip-model"]
-      add_has_many_association # TODO: check if we need to define this
-      add_ability_line_to_roles_yml # TODO: check if we need to define this
-    end
+    add_ability_line_to_roles_yml
     
     # add children to the show page of their parent.
     unless cli_options["skip-parent"] || parent == "None"
@@ -38,31 +35,6 @@ class Scaffolding::SuperchartsChartTransformer < Scaffolding::SuperchartsTransfo
         "<%# 🚅 super scaffolding will insert new children above this line. %>",
         prepend: true
       )
-    end
-    
-    unless cli_options["skip-model"]
-      add_scaffolding_hooks_to_model # TODO: check if we need to define this
-    end
-    
-    #
-    # DELEGATIONS
-    #
-    
-    unless cli_options["skip-model"]
-    
-      if ["Team", "User"].include?(parents.last) && parent != parents.last
-        scaffold_add_line_to_file("./app/models/scaffolding/completely_concrete/tangible_thing.rb", "has_one :#{parents.last.underscore}, through: :absolutely_abstract_creative_concept", HAS_ONE_HOOK, prepend: true)
-      end
-    
-    end
-    
-    unless cli_options["skip-locales"]
-      add_locale_helper_export_fix # TODO: check if we need to define this
-    end
-    
-    # titleize the localization file.
-    unless cli_options["skip-locales"]
-      replace_in_file(transform_string("./config/locales/en/scaffolding/completely_concrete/tangible_things.en.yml"), child, child.underscore.humanize.titleize)
     end
     
     # apply routes.
