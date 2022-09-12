@@ -1,0 +1,9 @@
+<%
+  first ||= false
+  last ||= false
+  label ||= "link"
+  path ||= ""
+  button_classes = "px-5 py-1.5 text-white font-small text-xs leading-tight uppercase hover:bg-blue-800/50 hover:text-white focus:bg-blue-700 focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out rounded-lg"
+%>
+
+<%= link_to label, path, class: [button_classes, "bg-blue-800 hover:bg-blue-800": current_page?(path)] %>
