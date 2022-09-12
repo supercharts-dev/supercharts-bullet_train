@@ -1,5 +1,6 @@
-# BulletTrain::Supercharts
-Short description and motivation.
+# Supercharts for Bullet Train
+
+Add charts to a [Bullet Train Rails app](https://bullettrain.co) the same way you super-scaffold a resource.
 
 ## Usage
 How to use my plugin.
@@ -8,7 +9,7 @@ How to use my plugin.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem "bullet_train-supercharts"
+gem "supercharts-bullet_train"
 ```
 
 And then execute:
@@ -18,7 +19,7 @@ $ bundle
 
 Or install it yourself as:
 ```bash
-$ gem install bullet_train-supercharts
+$ gem install supercharts-bullet_train
 ```
 
 ## Contributing
