@@ -89,4 +89,29 @@ class Scaffolding::SuperchartsChartTransformer < Scaffolding::SuperchartsTransfo
   def parent_show_file
     @target_show_file ||= "./app/views/account/scaffolding/absolutely_abstract/creative_concepts/show.html.erb"
   end
+  
+  def transform_string(string)
+    [
+      "Scaffolding::CompletelyConcrete::Charts::TangibleThings",
+      "scaffolding/completely_concrete/charts/tangible_things",
+    ].each do |needle|
+      # TODO There might be more to do here?
+      # What method is this calling?
+      string = string.gsub(needle, encode_double_replacement_fix(replacement_for(needle)))
+    end
+    
+    string = super(string)
+    decode_double_replacement_fix(string)
+  end
+  
+  def replacement_for(string)
+    case string
+    when "Scaffolding::CompletelyConcrete::Charts::TangibleThings"
+      "Charts::" + child.pluralize
+    when "scaffolding/completely_concrete/charts/tangible_things"
+      "charts/" + child.underscore.pluralize
+    else
+      "🛑"
+    end
+  end
 end
