@@ -1,4 +1,5 @@
 require "scaffolding/supercharts_chart_transformer"
+require "scaffolding/supercharts_routes_file_manipulator"
 
 module BulletTrain
   module Supercharts

@@ -48,7 +48,7 @@ class Scaffolding::SuperchartsChartTransformer < Scaffolding::SuperchartsTransfo
         else
           "config/routes/#{routes_namespace}.rb"
         end
-        routes_manipulator = Scaffolding::RoutesFileManipulator.new(routes_path, child, parent, cli_options)
+        routes_manipulator = Scaffolding::SuperchartsRoutesFileManipulator.new(routes_path, child, parent, cli_options)
       rescue Errno::ENOENT => _
         puts "Creating '#{routes_path}'.".green
     
@@ -79,8 +79,8 @@ class Scaffolding::SuperchartsChartTransformer < Scaffolding::SuperchartsTransfo
         p e
         add_additional_step :yellow, "We weren't able to automatically add your `#{routes_namespace}` routes for you. In theory this should be very rare, so if you could reach out on Slack, you could probably provide context that will help us fix whatever the problem was. In the meantime, to add the routes manually, we've got a guide at https://blog.bullettrain.co/nested-namespaced-rails-routing-examples/ ."
       end
-    
-      routes_manipulator.write
+      
+      Scaffolding::FileManipulator.write("config/routes.rb", routes_manipulator.lines)
     end
     
     restart_server unless ENV["CI"].present?
