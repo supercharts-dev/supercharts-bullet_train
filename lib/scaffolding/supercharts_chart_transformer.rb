@@ -9,7 +9,6 @@ class Scaffolding::SuperchartsChartTransformer < Scaffolding::SuperchartsTransfo
       "./app/controllers/account/scaffolding/completely_concrete/charts/tangible_things_controller.rb",
       "./app/views/account/scaffolding/completely_concrete/charts/tangible_things",
       "./app/views/shared/supercharts",
-      ("./config/locales/en/scaffolding/completely_concrete/tangible_things.en.yml" unless cli_options["skip-locales"])
     ].compact
     
     files.each do |name|
@@ -19,8 +18,6 @@ class Scaffolding::SuperchartsChartTransformer < Scaffolding::SuperchartsTransfo
         scaffold_file(name)
       end
     end
-    
-    add_ability_line_to_roles_yml
     
     # add children to the show page of their parent.
     unless cli_options["skip-parent"] || parent == "None"
