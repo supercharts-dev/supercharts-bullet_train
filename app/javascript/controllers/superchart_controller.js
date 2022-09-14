@@ -16,6 +16,7 @@ export default class extends SuperchartChartjsController {
   
   static defaultCssProperties = {
     '--animation-duration': 200, // milliseconds
+    '--axis-color': '#00000066'
   }
   
   connect() {
@@ -63,7 +64,7 @@ export default class extends SuperchartChartjsController {
 
   // You can set default options in this getter for all your charts.
   get defaultOptions() {
-    const transparentWhite = '#ffffff66'
+    const axisColor = this.cssPropertyValue('--axis-color')
     return {
       maintainAspectRatio: false,
       animation: {
@@ -99,7 +100,7 @@ export default class extends SuperchartChartjsController {
           display: false,
         }
       },
-      color: transparentWhite,
+      color: axisColor,
       borderColor: 'rgb(4, 123, 248)',
       fill: false,
       lineTension: 0.3,
@@ -122,20 +123,20 @@ export default class extends SuperchartChartjsController {
       scales: {
         x: {
           grid: {
-            borderColor: transparentWhite
+            borderColor: axisColor
           },
           ticks: {
-            color: transparentWhite,
-            tickColor: transparentWhite
+            color: axisColor,
+            tickColor: axisColor
           }
         },
         y: {
           grid: {
-            borderColor: transparentWhite,
-            tickColor: transparentWhite
+            borderColor: axisColor,
+            tickColor: axisColor
           },
           ticks: {
-            color: transparentWhite
+            color: axisColor
           }
         }
       }
