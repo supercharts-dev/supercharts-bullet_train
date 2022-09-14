@@ -1,0 +1,50 @@
+<%= turbo_frame_tag :charts_tangible_things do %>
+  <div class="bg-white dark:bg-sealBlue-400 p-8 rounded-md shadow"
+    data-controller="supercharts--filterable"
+    data-action="superchart:update-chart->supercharts--filterable#updateChart"
+  >
+    <%= turbo_frame_tag :charts_tangible_things_filters do %>
+      <div class="flex justify-start">
+        <div class="">
+          <h2 class="text-xs uppercase dark:text-white/50">
+            <% if @timespan == "1m" %>
+              Tangible Things last 31 days
+            <% elsif @timespan == "ytd" %>
+              Tangible Things since start of year
+            <% end %>
+          </h2>
+          <p class="font-semibold dark:text-white mt-2" style="font-size: 1.8rem;">
+            <%= @total %>
+          </p>
+        </div>
+        <div class="ml-auto">
+          <div
+            data-controller="supercharts--filters" data-supercharts--filters-event-name="superchart:update-chart"
+          >
+            <div class="flex items-center justify-center">
+              <div class="inline-flex space-x-1" role="group">
+                <%= render "shared/supercharts/filter_button", path: polymorphic_path([:account, @absolutely_abstract_creative_concept, :charts, :tangible_things], timespan: "1m"), label: "1m", first: true %>
+                <%= render "shared/supercharts/filter_button", path: polymorphic_path([:account, @absolutely_abstract_creative_concept, :charts, :tangible_things], timespan: "ytd"), label: "ytd", last: true %>
+              </div>
+            </div>
+            <template data-supercharts--filters-target="data">
+              <%= @csv.lstrip.html_safe %>
+            </template>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    
+    <div
+      class="mt-4"
+      data-controller="superchart"
+      data-superchart-type-value="line"
+      data-superchart-label-value="Tangible Things per <%= @period.to_s.capitalize %>"
+      data-supercharts--filterable-target="chart"
+      data-action="update-chart->superchart#updateChart"
+    >
+      <canvas data-superchart-target="chartjsCanvas" style="height: 200px"></canvas>
+      <template data-superchart-target="csvData" data-supercharts--filterable-target="chartSourceData" />
+    </div>
+  </div>
+<% end %>
