@@ -23,7 +23,7 @@ class Scaffolding::SuperchartsChartTransformer < Scaffolding::SuperchartsTransfo
     unless cli_options["skip-parent"] || parent == "None"
       lines_to_add = <<~RUBY
         <div class="mt-4">
-          <%= turbo_frame_tag :charts_tangible_things, src: [:account, @creative_concept, :charts, :tangible_things] do %>
+          <%= turbo_frame_tag :charts_tangible_things, src: polymorphic_path([:account, @creative_concept, :charts, :tangible_things], timespan: "1m") do %>
           <% end %>
         </div>
       RUBY
