@@ -1,10 +1,12 @@
 require 'csv'
 
-class Account::Scaffolding::CompletelyConcrete::Charts::TangibleThingsController < Account::ApplicationController
-  account_load_and_authorize_resource :tangible_thing, through: :absolutely_abstract_creative_concept, through_association: :completely_concrete_tangible_things
+class Account::Scaffolding::CompletelyConcrete::TangibleThings::TangibleThingsChartController < Account::ApplicationController
+  account_load_and_authorize_resource :tangible_thing, through: :absolutely_abstract_creative_concept, through_association: :completely_concrete_tangible_things, collection_actions: [:show]
 
-  # GET /account/scaffolding/absolutely_abstract/creative_concepts/:absolutely_abstract_creative_concept_id/completely_concrete/charts/tangible_things
-  def index
+  # GET /account/scaffolding/absolutely_abstract/creative_concepts/:absolutely_abstract_creative_concept_id/completely_concrete/tangible_things/chart
+  def show
+    @tangible_things = @absolutely_abstract_creative_concept.completely_concrete_tangible_things
+    
     @timespan = params[:timespan]
     case @timespan
     when "ytd"

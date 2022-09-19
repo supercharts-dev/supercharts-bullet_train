@@ -23,8 +23,8 @@
           >
             <div class="flex items-center justify-center">
               <div class="inline-flex space-x-1" role="group">
-                <%= render "shared/supercharts/filter_button", path: polymorphic_path([:account, @absolutely_abstract_creative_concept, :charts, :tangible_things], timespan: "1m"), label: "1m", first: true %>
-                <%= render "shared/supercharts/filter_button", path: polymorphic_path([:account, @absolutely_abstract_creative_concept, :charts, :tangible_things], timespan: "ytd"), label: "ytd", last: true %>
+                <%= render "shared/supercharts/filter_button", path: polymorphic_path([:account, @absolutely_abstract_creative_concept, :tangible_things, :chart], timespan: "1m"), label: "1m", first: true %>
+                <%= render "shared/supercharts/filter_button", path: polymorphic_path([:account, @absolutely_abstract_creative_concept, :tangible_things, :chart], timespan: "ytd"), label: "ytd", last: true %>
               </div>
             </div>
             <template data-supercharts--filters-target="data">

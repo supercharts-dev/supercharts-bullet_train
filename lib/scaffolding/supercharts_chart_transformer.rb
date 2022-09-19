@@ -6,8 +6,8 @@ class Scaffolding::SuperchartsChartTransformer < Scaffolding::SuperchartsTransfo
     
     # copy files over and do the appropriate string replace.
     files = [
-      "./app/controllers/account/scaffolding/completely_concrete/charts/tangible_things_controller.rb",
-      "./app/views/account/scaffolding/completely_concrete/charts/tangible_things",
+      "./app/controllers/account/scaffolding/completely_concrete/tangible_things/tangible_things_chart_controller.rb",
+      "./app/views/account/scaffolding/completely_concrete/tangible_things/tangible_things_chart",
       "./app/views/shared/supercharts",
     ].compact
     
@@ -23,7 +23,7 @@ class Scaffolding::SuperchartsChartTransformer < Scaffolding::SuperchartsTransfo
     unless cli_options["skip-parent"] || parent == "None"
       lines_to_add = <<~RUBY
         <div class="mt-4">
-          <%= turbo_frame_tag :charts_tangible_things, src: polymorphic_path([:account, @creative_concept, :charts, :tangible_things], timespan: "1m") do %>
+          <%= turbo_frame_tag :charts_tangible_things, src: polymorphic_path([:account, @creative_concept, :tangible_things, :chart], timespan: "1m") do %>
           <% end %>
         </div>
       RUBY
@@ -36,49 +36,26 @@ class Scaffolding::SuperchartsChartTransformer < Scaffolding::SuperchartsTransfo
     end
     
     # apply routes.
-    unless cli_options["skip-routes"]
-      routes_namespace = cli_options["namespace"] || "account"
+    # TODO this is a hack and should be in its own RouteFileManipulator class
+    lines = File.read("config/routes.rb").lines.map(&:chomp)
+    account_namespace_found = false
     
-      begin
-        routes_path = if routes_namespace == "account"
-          "config/routes.rb"
+    lines.each_with_index do |line, index|
+      if line.match?("namespace :account do")
+        account_namespace_found = true
+      elsif account_namespace_found && line.match?(transform_string("resources :tangible_things"))
+        chart_resource_lines = transform_string("collection do\nresource :chart, only: :show, module: :tangible_things, as: :tangible_things_chart, controller: :tangible_things_chart\nend")
+        if line.match? /do$/
+          lines[index] = "#{line}\n#{chart_resource_lines}\n"
         else
-          "config/routes/#{routes_namespace}.rb"
+          lines[index] = "#{line} do\n#{chart_resource_lines}\nend"
         end
-        routes_manipulator = Scaffolding::SuperchartsRoutesFileManipulator.new(routes_path, child, parent, cli_options)
-      rescue Errno::ENOENT => _
-        puts "Creating '#{routes_path}'.".green
-    
-        unless File.directory?("config/routes")
-          FileUtils.mkdir_p("config/routes")
-        end
-    
-        File.write(routes_path, <<~RUBY)
-          collection_actions = [:index, :new, :create]
-    
-          # 🚅 Don't remove this block, it will break Super Scaffolding.
-          begin do
-            namespace :#{routes_namespace} do
-              shallow do
-                resources :teams do
-                end
-              end
-            end
-          end
-        RUBY
-    
-        retry
       end
-    
-      begin
-        routes_manipulator.apply([routes_namespace], prepend_namespace_to_child: "charts")
-      rescue StandardError => e
-        p e
-        add_additional_step :yellow, "We weren't able to automatically add your `#{routes_namespace}` routes for you. In theory this should be very rare, so if you could reach out on Slack, you could probably provide context that will help us fix whatever the problem was. In the meantime, to add the routes manually, we've got a guide at https://blog.bullettrain.co/nested-namespaced-rails-routing-examples/ ."
-      end
-      
-      Scaffolding::FileManipulator.write("config/routes.rb", routes_manipulator.lines)
     end
+    
+    File.write("config/routes.rb", lines.join("\n"))
+    
+    puts `standardrb --fix ./config/routes.rb`
     
     restart_server unless ENV["CI"].present?
   end
@@ -89,8 +66,7 @@ class Scaffolding::SuperchartsChartTransformer < Scaffolding::SuperchartsTransfo
   
   def transform_string(string)
     [
-      "Scaffolding::CompletelyConcrete::Charts::TangibleThings",
-      "scaffolding/completely_concrete/charts/tangible_things",
+      "Scaffolding::CompletelyConcrete::TangibleThings::TangibleThingsChart",
     ].each do |needle|
       # TODO There might be more to do here?
       # What method is this calling?
@@ -103,10 +79,8 @@ class Scaffolding::SuperchartsChartTransformer < Scaffolding::SuperchartsTransfo
   
   def replacement_for(string)
     case string
-    when "Scaffolding::CompletelyConcrete::Charts::TangibleThings"
-      "Charts::" + child.pluralize
-    when "scaffolding/completely_concrete/charts/tangible_things"
-      "charts/" + child.underscore.pluralize
+    when "Scaffolding::CompletelyConcrete::TangibleThings::TangibleThingsChart"
+      child.pluralize + "::" + child.pluralize + "Chart"
     else
       "🛑"
     end
