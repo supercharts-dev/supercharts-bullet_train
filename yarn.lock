@@ -1186,10 +1186,10 @@
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-4.6.0.tgz#3c7c9c46e678feefe7a2e5bb609d3dbd665ffb3f"
   integrity sha512-t09vSN3MdfsyCHoFcTRCH/iUtG7OJ0CsjzB8cjAmKc/va/kIgeDI/TxsigdncE/4be734m0cvIYwNaV4i2XqAw==
 
-"@supercharts/stimulus-base@^0.1.0":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@supercharts/stimulus-base/-/stimulus-base-0.1.0.tgz#f6c91aded34bec13e075d2bc7a11587881bb0370"
-  integrity sha512-unbu4P+wYzuHmcsNb4smEHAt4heqXtkgmCnqxyn1yXYn+85DPZpzVbLJSem5CkLzlQTGHMupYJNDTq9QdayzUA==
+"@supercharts/stimulus-base@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@supercharts/stimulus-base/-/stimulus-base-0.1.1.tgz#735d1bfbfda7dc5b6a19f4997fde5eaf14d974d0"
+  integrity sha512-HtaXaSp6texYoeDMXxenQWVPTggxExzqIpKy5S7OnMdCnwZkT6HLHh9hu+gPyNZciPhTXOVURiFcyRy+CGXATA==
   dependencies:
     "@hotwired/stimulus" "^3.1.0"
     chart.js "^3.9.1"
