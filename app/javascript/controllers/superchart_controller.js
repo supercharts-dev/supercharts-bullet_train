@@ -17,6 +17,7 @@ export default class extends SuperchartChartjsController {
   static defaultCssProperties = {
     '--animation-duration': 200, // milliseconds
     '--axis-color': '#999',
+    '--grid-color': '#eee',
     '--line-color': '#aaa',
     '--point-color': '#333',
     '--point-stroke-color': '#fff',
@@ -126,7 +127,9 @@ export default class extends SuperchartChartjsController {
       scales: {
         x: {
           grid: {
-            borderColor: axisColor
+            color: this.cssPropertyValue('--grid-color'),
+            borderColor: axisColor,
+            tickColor: axisColor,
           },
           ticks: {
             color: axisColor,
@@ -135,11 +138,13 @@ export default class extends SuperchartChartjsController {
         },
         y: {
           grid: {
+            color: this.cssPropertyValue('--grid-color'),
             borderColor: axisColor,
-            tickColor: axisColor
+            tickColor: axisColor,
           },
           ticks: {
-            color: axisColor
+            color: axisColor,
+            tickColor: axisColor
           }
         }
       }
