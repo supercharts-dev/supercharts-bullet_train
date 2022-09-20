@@ -16,7 +16,11 @@ export default class extends SuperchartChartjsController {
   
   static defaultCssProperties = {
     '--animation-duration': 200, // milliseconds
-    '--axis-color': '#00000066'
+    '--axis-color': '#999',
+    '--line-color': '#aaa',
+    '--point-color': '#333',
+    '--point-stroke-color': '#fff',
+    '--point-stroke-color-hover': '#eee',
   }
   
   connect() {
@@ -101,21 +105,20 @@ export default class extends SuperchartChartjsController {
         }
       },
       color: axisColor,
-      borderColor: 'rgb(4, 123, 248)',
       fill: false,
       lineTension: 0.3,
       backgroundColor: "#fff",
-      borderColor: "#047bf8",
+      borderColor: this.cssPropertyValue('--line-color'),
       borderCapStyle: "butt",
       borderDash: [],
       borderDashOffset: 0,
       borderJoinStyle: "miter",
-      pointBorderColor: "rgb(50, 60, 88)",
-      pointBackgroundColor: "#fff",
+      pointBorderColor: this.cssPropertyValue('--point-stroke-color'),
+      pointBackgroundColor: this.cssPropertyValue('--point-color'),
       pointBorderWidth: 4,
       pointHoverRadius: 10,
-      pointHoverBackgroundColor: "#fff",
-      pointHoverBorderColor: "rgb(50, 60, 88)",
+      pointHoverBackgroundColor: this.cssPropertyValue('--point-color'),
+      pointHoverBorderColor: this.cssPropertyValue('--point-stroke-color-hover'),
       pointHoverBorderWidth: 3,
       pointRadius: 6,
       pointHitRadius: 10,
