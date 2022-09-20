@@ -1,5 +1,13 @@
 <%= turbo_frame_tag :charts_tangible_things do %>
-  <div class="bg-white dark:bg-sealBlue-400 p-8 rounded-md shadow"
+  <div class="p-8 rounded-md shadow
+    bg-white dark:bg-darkPrimary-700
+    [--axis-color:theme('colors.gray.300')] dark:[--axis-color:theme('colors.darkPrimary.500')]
+    [--grid-color:theme('colors.gray.100')] dark:[--grid-color:theme('colors.darkPrimary.800')]
+    [--line-color:#047bf8]
+    [--point-color:theme('colors.gray.800')] dark:[--point-color:theme('colors.white')]
+    [--point-stroke-color:theme('colors.white')] dark:[--point-stroke-color:theme('colors.darkPrimary.700')]
+    [--point-stroke-color-hover:theme('colors.gray.100')] dark:[--point-stroke-color-hover:theme('colors.darkPrimary.600')]
+    "
     data-controller="supercharts--filterable"
     data-action="superchart:update-chart->supercharts--filterable#updateChart"
   >
