@@ -35,6 +35,9 @@ class Scaffolding::SuperchartsChartTransformer < Scaffolding::SuperchartsTransfo
       )
     end
     
+    # add user permissions.
+    add_ability_line_to_roles_yml
+    
     # apply routes.
     # TODO this is a hack and should be in its own RouteFileManipulator class
     lines = File.read("config/routes.rb").lines.map(&:chomp)
