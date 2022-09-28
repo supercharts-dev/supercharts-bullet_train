@@ -1,4 +1,4 @@
-import { SuperchartChartjsController } from '@supercharts/stimulus-base'
+import { SuperchartChartjsController, parseContentsAsJSON } from '@supercharts/stimulus-base'
 import * as d3 from "d3"
 
 export default class extends SuperchartChartjsController {
@@ -60,7 +60,7 @@ export default class extends SuperchartChartjsController {
     if (this.hasChartjsOptionsTarget) {
       options = {
         ...options,
-        ...JSON.parse(this.chartjsOptionsTarget.innerHTML.trim())
+        ...parseContentsAsJSON(this.chartjsOptionsTarget)
       }
     }
     
