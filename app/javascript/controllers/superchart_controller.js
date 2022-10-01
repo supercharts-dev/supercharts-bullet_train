@@ -32,6 +32,12 @@ export default class extends SuperchartChartjsController {
     super.updateChart()
   }
   
+  describeDataForX(event) {
+    const point = event?.tooltip?.dataPoints[0]
+    const dataIndex = point.dataIndex
+    this.dispatch("description-requested", { detail: { index: dataIndex, value: point.raw } })
+  }
+  
   get chartjsData() {
     if (this.hasChartJsDataTarget) {
       return super.chartjsData()
@@ -100,9 +106,18 @@ export default class extends SuperchartChartjsController {
           }
         }
       },
+      interaction: {
+        mode: 'index',
+        intersect: false,
+      },
       plugins: {
         legend: {
           display: false,
+        },
+        tooltip: {
+          enabled: false,
+          position: 'nearest',
+          external: this.describeDataForX.bind(this)
         }
       },
       color: axisColor,
