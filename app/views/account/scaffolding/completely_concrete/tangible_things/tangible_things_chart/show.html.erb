@@ -8,22 +8,39 @@
     [--point-stroke-color:theme('colors.white')] dark:[--point-stroke-color:theme('colors.darkPrimary.700')]
     [--point-stroke-color-hover:theme('colors.gray.100')] dark:[--point-stroke-color-hover:theme('colors.darkPrimary.600')]
     "
-    data-controller="supercharts--filterable"
-    data-action="superchart:update-chart->supercharts--filterable#updateChart"
+    data-controller="supercharts--filterable supercharts--describable"
+    data-action="superchart:update-chart->supercharts--filterable#updateChart superchart:description-requested->supercharts--describable#showDescriptionWith"
+    data-supercharts--describable-hide-overall-description-class="opacity-0"
+    data-supercharts--describable-hide-contextual-description-class="hidden"
   >
     <%= turbo_frame_tag :charts_tangible_things_filters do %>
       <div class="flex justify-start">
-        <div class="">
-          <h2 class="text-xs uppercase dark:text-white/50">
-            <% if @timespan == "1m" %>
-              Tangible Things last 31 days
-            <% elsif @timespan == "ytd" %>
-              Tangible Things since start of year
-            <% end %>
-          </h2>
-          <p class="font-semibold dark:text-white mt-2" style="font-size: 1.8rem;">
-            <%= @total %>
-          </p>
+        <div class="relative">
+          <div data-supercharts--describable-target="overallDescription">
+            <h2 class="text-xs uppercase dark:text-white/50">
+              <% if @timespan == "1m" %>
+                Tangible Things last 31 days
+              <% elsif @timespan == "ytd" %>
+                Tangible Things since start of year
+              <% end %>
+            </h2>
+            <p class="font-semibold dark:text-white mt-2" style="font-size: 1.8rem;">
+              <%= @total %>
+            </p>
+          </div>
+          <div data-supercharts--describable-target="contextualDescription" class="hidden absolute top-0 left-0 right-0"></div>
+          <template data-supercharts--describable-target="contextualDescriptionTemplate">
+            <p class="font-semibold dark:text-white mb-1" style="font-size: 1.6rem;">%value%</p>
+            <p class="text-xs uppercase dark:text-white/50">
+              <% if @period == :day %>
+                Tangible Things on %label%
+              <% elsif @period == :week %>
+                Tangible Things in week of %label%
+              <% elsif @period == :month %>
+                Tangible Things in %label%
+              <% end %>
+            </p>
+          </template>
         </div>
         <div class="ml-auto">
           <div
@@ -47,7 +64,6 @@
       class="mt-4"
       data-controller="superchart"
       data-superchart-type-value="line"
-      data-superchart-label-value="Tangible Things per <%= @period.to_s.capitalize %>"
       data-supercharts--filterable-target="chart"
       data-action="update-chart->superchart#updateChart"
     >
