@@ -1,6 +1,7 @@
 require 'csv'
 
 class Account::Scaffolding::CompletelyConcrete::TangibleThings::TangibleThingsChartController < Account::ApplicationController
+  include ActionView::Helpers::NumberHelper
   account_load_and_authorize_resource :tangible_thing, through: :absolutely_abstract_creative_concept, through_association: :completely_concrete_tangible_things, collection_actions: [:show]
 
   # GET /account/scaffolding/absolutely_abstract/creative_concepts/:absolutely_abstract_creative_concept_id/completely_concrete/tangible_things/chart
@@ -27,7 +28,7 @@ class Account::Scaffolding::CompletelyConcrete::TangibleThings::TangibleThingsCh
     
     @total = data.values.reduce(:+)
     
-    date_format = if @period == :day
+    date_format_abbr = if @period == :day
       "%e"
     elsif @period == :week
       "%b %e"
@@ -35,9 +36,17 @@ class Account::Scaffolding::CompletelyConcrete::TangibleThings::TangibleThingsCh
       "%b"
     end
     
-    @csv = CSV.generate(" ", headers: %w[date value], write_headers: true, encoding: "UTF-8") do |csv|
+    date_format_full = if @period == :day
+      "%B %e"
+    elsif @period == :week
+      "%B %e"
+    elsif @period == :month
+      "%B, %Y"
+    end
+    
+    @csv = CSV.generate(" ", headers: %w[date_abbr date_full value value_formatted], write_headers: true, encoding: "UTF-8") do |csv|
       data.each do |date, value|
-        csv.add_row [date.strftime(date_format), value]
+        csv.add_row [date.strftime(date_format_abbr), date.strftime(date_format_full), value, number_with_delimiter(value)]
       end
     end
   end
