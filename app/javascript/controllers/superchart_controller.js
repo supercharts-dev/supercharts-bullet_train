@@ -33,7 +33,8 @@ export default class extends SuperchartChartjsController {
     const dataIndex = point.dataIndex
     this.dispatch("description-requested", { detail: {
       label: this.csvData[dataIndex][this.csvData.columns[1]],
-      value: this.csvData[dataIndex][this.csvData.columns[2]]
+      value: this.csvData[dataIndex][this.csvData.columns[2]],
+      show: !!event?.tooltip?.opacity
     } })
   }
   
