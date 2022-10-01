@@ -7,10 +7,6 @@ export default class extends SuperchartChartjsController {
     type: { 
       type: String,
       default: "line"
-    },
-    label: {
-      type: String,
-      default: "Value"
     }
   }
   
@@ -35,7 +31,14 @@ export default class extends SuperchartChartjsController {
   describeDataForX(event) {
     const point = event?.tooltip?.dataPoints[0]
     const dataIndex = point.dataIndex
-    this.dispatch("description-requested", { detail: { index: dataIndex, value: point.raw } })
+    this.dispatch("description-requested", { detail: {
+      label: this.csvData[dataIndex][this.csvData.columns[1]],
+      value: this.csvData[dataIndex][this.csvData.columns[2]]
+    } })
+  }
+  
+  parseCsvData() {
+    this.csvData = d3.csvParse(this.csvDataTarget.innerHTML.trim(), d3.autoType)
   }
   
   get chartjsData() {
@@ -47,13 +50,14 @@ export default class extends SuperchartChartjsController {
       return []
     }
     
-    const csv = d3.csvParse(this.csvDataTarget.innerHTML.trim(), d3.autoType)
+    this.parseCsvData()
+    
     return {
-      labels: csv.map(d => d[csv.columns[0]]),
+      labels: this.csvData.map(d => d[this.csvData.columns[0]]),
       datasets: [{
         type: this.typeValue,
-        label: this.labelValue,
-        data: csv.map(d => d[csv.columns[1]])
+        label: "Value",
+        data: this.csvData.map(d => d[this.csvData.columns[2]])
       }]
     }
   }
