@@ -7,6 +7,8 @@
     [--point-color:theme('colors.gray.800')] dark:[--point-color:theme('colors.white')]
     [--point-stroke-color:theme('colors.white')] dark:[--point-stroke-color:theme('colors.darkPrimary.700')]
     [--point-stroke-color-hover:theme('colors.gray.100')] dark:[--point-stroke-color-hover:theme('colors.darkPrimary.600')]
+    [--bar-fill-color:var(--line-color)]
+    [--bar-hover-fill-color:var(--point-color)]
     "
     data-controller="supercharts--filterable supercharts--describable"
     data-action="superchart:update-chart->supercharts--filterable#updateChart superchart:description-requested->supercharts--describable#showDescriptionWith"
