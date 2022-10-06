@@ -18,6 +18,8 @@ export default class extends SuperchartChartjsController {
     '--point-color': '#333',
     '--point-stroke-color': '#fff',
     '--point-stroke-color-hover': '#eee',
+    '--bar-fill-color': '#999',
+    '--bar-hover-fill-color': '#333',
   }
   
   connect() {
