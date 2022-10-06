@@ -128,7 +128,6 @@ export default class extends SuperchartChartjsController {
       color: axisColor,
       fill: false,
       lineTension: 0.3,
-      backgroundColor: "#fff",
       borderColor: this.cssPropertyValue('--line-color'),
       borderCapStyle: "butt",
       borderDash: [],
