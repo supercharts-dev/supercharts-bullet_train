@@ -111,6 +111,8 @@ FactoryBot.create_list(:click_through, 450, :created_last_2_months, team_id: 1)
 
 Visit your app in `localhost:3000` and you should see your new chart.
 
+![Example chart inside a Bullet Train app showing Click Throughs in the last 30 days](https://supercharts.dev/images/supercharts-example-scaffolded-into-bullet-train-app.gif)
+
 ## Modifying the chart
 
 Coming soon...
