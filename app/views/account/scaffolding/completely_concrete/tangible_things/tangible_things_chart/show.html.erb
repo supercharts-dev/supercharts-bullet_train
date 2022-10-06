@@ -3,10 +3,12 @@
     bg-white dark:bg-darkPrimary-700
     [--axis-color:theme('colors.gray.300')] dark:[--axis-color:theme('colors.darkPrimary.500')]
     [--grid-color:theme('colors.gray.100')] dark:[--grid-color:theme('colors.darkPrimary.800')]
-    [--line-color:#047bf8]
+    [--line-color:#a86fe7]
     [--point-color:theme('colors.gray.800')] dark:[--point-color:theme('colors.white')]
     [--point-stroke-color:theme('colors.white')] dark:[--point-stroke-color:theme('colors.darkPrimary.700')]
     [--point-stroke-color-hover:theme('colors.gray.100')] dark:[--point-stroke-color-hover:theme('colors.darkPrimary.600')]
+    [--bar-fill-color:var(--line-color)]
+    [--bar-hover-fill-color:var(--point-color)]
     "
     data-controller="supercharts--filterable supercharts--describable"
     data-action="superchart:update-chart->supercharts--filterable#updateChart superchart:description-requested->supercharts--describable#showDescriptionWith"
@@ -67,7 +69,7 @@
       data-supercharts--filterable-target="chart"
       data-action="update-chart->superchart#updateChart"
     >
-      <canvas data-superchart-target="chartjsCanvas" style="height: 200px"></canvas>
+      <canvas data-superchart-target="chartjsCanvas" style="height: var(--chart-height)""></canvas>
       <template data-superchart-target="csvData" data-supercharts--filterable-target="chartSourceData"></template>
       <template data-superchart-target="chartjsOptions"></template>
     </div>

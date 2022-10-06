@@ -143,6 +143,8 @@ export default class extends SuperchartChartjsController {
       pointHoverBorderWidth: 3,
       pointRadius: 6,
       pointHitRadius: 10,
+      backgroundColor: this.cssPropertyValue('--bar-fill-color'),
+      hoverBackgroundColor: this.cssPropertyValue('--bar-hover-fill-color'),
       spanGaps: false,
       scales: {
         x: {
