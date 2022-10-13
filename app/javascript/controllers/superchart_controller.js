@@ -77,7 +77,7 @@ export default class extends SuperchartChartjsController {
       }
     }
     
-    return options
+    return this.parseForCssVars(options)
   }
 
   // You can set default options in this getter for all your charts.
