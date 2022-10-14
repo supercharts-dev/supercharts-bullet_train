@@ -168,7 +168,9 @@ export default class extends SuperchartChartjsController {
           ticks: {
             color: axisColor,
             tickColor: axisColor
-          }
+          },
+          suggestedMin: 0,
+          suggestedMax: 10
         }
       }
     }
