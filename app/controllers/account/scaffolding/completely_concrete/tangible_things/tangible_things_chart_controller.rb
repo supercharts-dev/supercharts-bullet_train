@@ -21,6 +21,10 @@ class Account::Scaffolding::CompletelyConcrete::TangibleThings::TangibleThingsCh
         @period = :day
       end
       data = @tangible_things.group_by_period(@period, :created_at, range: range, expand_range: true).count
+    when "1w"
+      range = (1.weeks.ago)..Time.now
+      @period = :day
+      data = @tangible_things.group_by_period(@period, :created_at, range: range, expand_range: true).count
     else
       @period = :day
       data = @tangible_things.group_by_period(@period, :created_at, last: 30).count
