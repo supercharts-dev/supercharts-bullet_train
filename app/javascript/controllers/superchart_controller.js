@@ -20,6 +20,10 @@ export default class extends SuperchartChartjsController {
     '--point-stroke-color-hover': '#eee',
     '--bar-fill-color': '#999',
     '--bar-hover-fill-color': '#333',
+    '--point-radius': 6,
+    '--point-hover-radius': 10,
+    '--point-border-width': 4,
+    '--point-hover-border-width': 3,
   }
   
   connect() {
@@ -79,44 +83,51 @@ export default class extends SuperchartChartjsController {
     
     return this.parseForCssVars(options)
   }
+  
+  get animationOptions() {
+    if (this.runAnimations === false) { return false }
+    return {
+      x: {
+        type: 'number',
+        easing: 'linear',
+        duration: this.delayBetweenPoints,
+        from: NaN, // the point is initially skipped
+        delay: (ctx) => {
+          if (ctx.type !== 'data' || ctx.xStarted) {
+            return 0;
+          }
+          ctx.xStarted = true;
+          return ctx.index * this.delayBetweenPoints;
+        }
+      },
+      y: {
+        type: 'number',
+        easing: 'linear',
+        duration: this.delayBetweenPoints,
+        from: previousY,
+        delay: (ctx) => {
+          if (ctx.type !== 'data' || ctx.yStarted) {
+            return 0;
+          }
+          ctx.yStarted = true;
+          return ctx.index * this.delayBetweenPoints;
+        }
+      }
+    }
+  }
 
   // You can set default options in this getter for all your charts.
   get defaultOptions() {
     const axisColor = this.cssPropertyValue('--axis-color')
     return {
       maintainAspectRatio: false,
-      animation: {
-        x: {
-          type: 'number',
-          easing: 'linear',
-          duration: this.delayBetweenPoints,
-          from: NaN, // the point is initially skipped
-          delay: (ctx) => {
-            if (ctx.type !== 'data' || ctx.xStarted) {
-              return 0;
-            }
-            ctx.xStarted = true;
-            return ctx.index * this.delayBetweenPoints;
-          }
-        },
-        y: {
-          type: 'number',
-          easing: 'linear',
-          duration: this.delayBetweenPoints,
-          from: previousY,
-          delay: (ctx) => {
-            if (ctx.type !== 'data' || ctx.yStarted) {
-              return 0;
-            }
-            ctx.yStarted = true;
-            return ctx.index * this.delayBetweenPoints;
-          }
-        }
-      },
+      animation: this.animationOptions,
       interaction: {
         mode: 'index',
         intersect: false,
       },
+      resizeDelay: 200, // milliseconds
+      onResize: this.handleResize.bind(this),
       plugins: {
         legend: {
           display: false,
@@ -137,12 +148,12 @@ export default class extends SuperchartChartjsController {
       borderJoinStyle: "miter",
       pointBorderColor: this.cssPropertyValue('--point-stroke-color'),
       pointBackgroundColor: this.cssPropertyValue('--point-color'),
-      pointBorderWidth: 4,
-      pointHoverRadius: 10,
       pointHoverBackgroundColor: this.cssPropertyValue('--point-color'),
       pointHoverBorderColor: this.cssPropertyValue('--point-stroke-color-hover'),
-      pointHoverBorderWidth: 3,
-      pointRadius: 6,
+      pointRadius: Number(this.cssPropertyValue('--point-radius')),
+      pointHoverRadius: Number(this.cssPropertyValue('--point-hover-radius')),
+      pointBorderWidth: Number(this.cssPropertyValue('--point-border-width')),
+      pointHoverBorderWidth: Number(this.cssPropertyValue('--point-hover-border-width')),
       pointHitRadius: 10,
       backgroundColor: this.cssPropertyValue('--bar-fill-color'),
       hoverBackgroundColor: this.cssPropertyValue('--bar-hover-fill-color'),
