@@ -24,7 +24,9 @@
         <div class="relative">
           <div data-supercharts--describable-target="overallDescription">
             <h2 class="text-xs uppercase dark:text-white/50">
-              <% if @timespan == "1m" %>
+              <% if @timespan == "1w" %>
+                Tangible Things last 7 days
+              <% elsif @timespan == "1m" %>
                 Tangible Things last 31 days
               <% elsif @timespan == "ytd" %>
                 Tangible Things since start of year
@@ -54,6 +56,7 @@
           >
             <div class="flex items-center justify-center">
               <div class="inline-flex space-x-1" role="group">
+                <%= render "shared/supercharts/filter_button", path: polymorphic_path([:account, @absolutely_abstract_creative_concept, :tangible_things, :chart], timespan: "1w"), label: "1w", first: true %>
                 <%= render "shared/supercharts/filter_button", path: polymorphic_path([:account, @absolutely_abstract_creative_concept, :tangible_things, :chart], timespan: "1m"), label: "1m", first: true %>
                 <%= render "shared/supercharts/filter_button", path: polymorphic_path([:account, @absolutely_abstract_creative_concept, :tangible_things, :chart], timespan: "ytd"), label: "ytd", last: true %>
               </div>
