@@ -9,6 +9,10 @@
     [--point-stroke-color-hover:theme('colors.gray.100')] dark:[--point-stroke-color-hover:theme('colors.darkPrimary.600')]
     [--bar-fill-color:var(--line-color)]
     [--bar-hover-fill-color:var(--point-color)]
+    [--point-radius:4] md:[--point-radius:6]
+    [--point-hover-radius:6] md:[--point-hover-radius:10]
+    [--point-border-width:3] md:[--point-border-width:4]
+    [--point-hover-border-width:2] md:[--point-hover-border-width:3]
     "
     data-controller="supercharts--filterable supercharts--describable"
     data-action="superchart:update-chart->supercharts--filterable#updateChart superchart:description-requested->supercharts--describable#showDescriptionWith"
