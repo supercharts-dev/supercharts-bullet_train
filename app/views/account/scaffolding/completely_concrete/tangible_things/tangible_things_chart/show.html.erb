@@ -76,7 +76,15 @@
       data-supercharts--filterable-target="chart"
       data-action="update-chart->superchart#updateChart"
     >
-      <canvas data-superchart-target="chartjsCanvas" style="height: var(--chart-height)""></canvas>
+      <canvas data-superchart-target="chartjsCanvas" style="height: var(--chart-height)"">
+        <% if @timespan == "1w" %>
+          Chart of Tangible Things last 7 days
+        <% elsif @timespan == "1m" %>
+          Chart of Tangible Things last 31 days
+        <% elsif @timespan == "ytd" %>
+          Chart of Tangible Things since start of year
+        <% end %>
+      </canvas>
       <template data-superchart-target="csvData" data-supercharts--filterable-target="chartSourceData"></template>
       <template data-superchart-target="chartjsOptions"></template>
     </div>
