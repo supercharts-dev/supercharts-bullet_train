@@ -194,6 +194,6 @@ But if the changes you'd like to make is in the list below, you'll need to make 
 Contribution directions go here.
 
 ## License
-The gem and npm packages are available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+The gem and npm package are available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
 [bullet-train]: https://bullettrain.co
