@@ -78,17 +78,19 @@ You're all set.
 
 ## Usage
 
-Let's you already have a ClickThrough model, storing click-throughs from campaigns. For now we'll just say it click_throughs have a `team_id` (in Bullet Train apps, your account is associated with a team).
+Let's say you already have a ClickThrough model, storing click-throughs from campaigns. For now we'll just say it click_throughs have a `team_id` (in Bullet Train apps, your account is associated with a team).
 
-You'd like a chart to appear in your Dashboard, showing how many click-throughs per day (so we'll group by), associated with your Team.
+You'd like a chart to appear in your Dashboard, showing how many click-throughs per day (so we'll group by day), associated with your Team.
 
 ```bash
 bin/super-scaffold supercharts:chart ClickThrough Team
 ```
 
+This will generated some new files and modify some files like inserting a `turbo_frame` in your `team#show` file, modifying your `roles.yml` file, etc. Look over the changes and commit when satisfied.
+
 ### Generate some test data
 
-We'll use a FactoryBot `trait` to randomize the `created_at` property for the test data we'll create.
+We'll use a FactoryBot `trait` to randomize the `created_at` property for the test data we'll create. This is the change I suggest you make to your `factories/click_throughs.rb` file:
 
 ```ruby
 # test/factories/click_throughs.rb
@@ -142,7 +144,7 @@ For the following types of changes, you'll need to create your own Stimulus cont
 
 ### Any other change: it depends
 
-If you just want to make aesthetic changes, you can change the following css variables found at the top of your scaffolded `show.html.erb`
+If you just want to make aesthetic changes, you can change the following css variables found at the top of your scaffolded `show.html.erb`. In this case, these are all TailwindCSS classes that set the appropriate custom CSS properties scoped to just that chart.
 
 ```html
 [--axis-color:theme('colors.gray.300')] dark:[--axis-color:theme('colors.darkPrimary.500')]
@@ -185,7 +187,7 @@ Note that to make this work with both light and dark mode, you might as well use
 
 But if the changes you'd like to make is in the list below, you'll need to make your own custom Stimulus controller:
 
-* The chart.js options you'd like to override includes JavaScript code (callback functions on properties)
+* The chart.js options you'd like to override includes JavaScript code (e.g. callback functions on properties)
 * Including more than one series (multi-line chart, etc)
 * Including annotations
 * Including a custom hover overlay
