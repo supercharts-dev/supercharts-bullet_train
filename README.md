@@ -191,6 +191,7 @@ But if the changes you'd like to make is in the list below, you'll need to make 
 * Including more than one series (multi-line chart, etc)
 * Including annotations
 * Including a custom hover overlay
+* You need to change a chart.js option that's deeply nested (e.g. `scales.x.grid: false`) because it'll override all options in the top option
 
 ## Contributing
 
