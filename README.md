@@ -191,7 +191,43 @@ But if the changes you'd like to make is in the list below, you'll need to make 
 * Including a custom hover overlay
 
 ## Contributing
-Contribution directions go here.
+
+### Local development
+
+* Create a Bullet Train app
+* Use the instructions above to include the required gems and the npm package
+* Create a `local/` directory into which you'll clone a copy of this repo:
+
+```bash
+mkdir local
+cd local/
+git clone <this REPO URL>
+```
+
+* In your Gemfile, change the gem to use the local path:
+
+```ruby
+gem "supercharts-bullet_train", path: "local/supercharts-bullet_train"
+```
+
+Then do
+
+```bash
+bundle install
+```
+
+* For modifying the JavaScript, Stimulus Controllers, you'll need to install `yalc` and use it to point to your local copy of the npm package:
+
+```bash
+yarn global add yalc
+cd local/supercharts-bullet_train
+yarn build # build the local changes
+yalc push # publish the npm package locally on your own computer
+cd ../../ # go back to the bullet-train project
+yalc link @supercharts/supercharts-bullet-train
+cd local/supercharts-bullet_train
+yarn watch # continually watch for JavaScript changes, re-build the npm package and push to the Bullet Train app
+```
 
 ## License
 The gem and npm package are available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
