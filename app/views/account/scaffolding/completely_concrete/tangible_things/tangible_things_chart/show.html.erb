@@ -20,7 +20,7 @@
     data-supercharts--describable-hide-contextual-description-class="hidden"
   >
     <%= turbo_frame_tag :charts_tangible_things_filters do %>
-      <div class="flex justify-start">
+      <div class="sm:flex justify-start">
         <div class="relative">
           <div data-supercharts--describable-target="overallDescription">
             <h2 class="text-xs uppercase dark:text-white/50">
@@ -50,7 +50,7 @@
             </p>
           </template>
         </div>
-        <div class="ml-auto">
+        <div class="mt-4 sm:mt-0 ml-auto">
           <div
             data-controller="supercharts--filters" data-supercharts--filters-event-name="superchart:update-chart"
           >
