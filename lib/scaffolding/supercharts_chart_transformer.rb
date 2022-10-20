@@ -22,7 +22,7 @@ class Scaffolding::SuperchartsChartTransformer < Scaffolding::SuperchartsTransfo
     # add children to the show page of their parent.
     unless cli_options["skip-parent"] || parent == "None"
       lines_to_add = <<~RUBY
-        <div class="mt-4 [--chart-height:250px] md:[--chart-height:200px]">
+        <div class="mt-4 [--chart-height:150px] md:[--chart-height:200px]">
           <%= turbo_frame_tag :charts_tangible_things, src: polymorphic_path([:account, @creative_concept, :tangible_things, :chart], timespan: "1m") do %>
             <%= render "shared/supercharts/chart_skeleton" do %>
               Tangible Things&hellip;
