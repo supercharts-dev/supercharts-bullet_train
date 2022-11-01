@@ -6,7 +6,7 @@ class Scaffolding::SuperchartsChartTransformer < Scaffolding::SuperchartsTransfo
     
     # copy files over and do the appropriate string replace.
     files = [
-      "./app/controllers/account/scaffolding/completely_concrete/tangible_things/tangible_things_chart_controller.rb",
+      "./lib/scaffolding/app/controllers/account/scaffolding/completely_concrete/tangible_things/tangible_things_chart_controller.rb",
       "./app/views/account/scaffolding/completely_concrete/tangible_things/tangible_things_chart",
       "./app/views/shared/supercharts",
     ].compact
@@ -73,6 +73,7 @@ class Scaffolding::SuperchartsChartTransformer < Scaffolding::SuperchartsTransfo
   def transform_string(string)
     [
       "Scaffolding::CompletelyConcrete::TangibleThings::TangibleThingsChart",
+      "lib/scaffolding/app",
     ].each do |needle|
       # TODO There might be more to do here?
       # What method is this calling?
@@ -87,6 +88,8 @@ class Scaffolding::SuperchartsChartTransformer < Scaffolding::SuperchartsTransfo
     case string
     when "Scaffolding::CompletelyConcrete::TangibleThings::TangibleThingsChart"
       child.pluralize + "::" + child.pluralize + "Chart"
+    when "lib/scaffolding/app"
+      "app"
     else
       "🛑"
     end
