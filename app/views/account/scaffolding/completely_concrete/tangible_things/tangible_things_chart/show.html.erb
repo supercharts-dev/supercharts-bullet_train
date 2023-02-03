@@ -57,7 +57,7 @@
             <div class="flex items-center justify-center">
               <div class="inline-flex space-x-1" role="group">
                 <%= render "shared/supercharts/filter_button", path: polymorphic_path([:account, @absolutely_abstract_creative_concept, :tangible_things, :chart], timespan: "1w"), label: "1w", first: true %>
-                <%= render "shared/supercharts/filter_button", path: polymorphic_path([:account, @absolutely_abstract_creative_concept, :tangible_things, :chart], timespan: "1m"), label: "1m", first: true %>
+                <%= render "shared/supercharts/filter_button", path: polymorphic_path([:account, @absolutely_abstract_creative_concept, :tangible_things, :chart], timespan: "1m"), label: "1m" %>
                 <%= render "shared/supercharts/filter_button", path: polymorphic_path([:account, @absolutely_abstract_creative_concept, :tangible_things, :chart], timespan: "ytd"), label: "ytd", last: true %>
               </div>
             </div>
