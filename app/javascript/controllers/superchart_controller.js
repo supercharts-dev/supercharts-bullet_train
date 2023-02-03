@@ -39,13 +39,13 @@ export default class extends SuperchartChartjsController {
     const dataIndex = point.dataIndex
     this.dispatch("description-requested", { detail: {
       label: this.csvData[dataIndex][this.csvData.columns[1]],
-      value: this.csvData[dataIndex][this.csvData.columns[2]],
+      value: this.csvData[dataIndex][this.csvData.columns[3]],
       show: !!event?.tooltip?.opacity
     } })
   }
   
   parseCsvData() {
-    this.csvData = d3.csvParse(this.csvDataTarget.innerHTML.trim(), d3.autoType)
+    this.csvData = d3.csvParse(this.csvDataTarget.innerHTML.trim())
   }
   
   get chartjsData() {

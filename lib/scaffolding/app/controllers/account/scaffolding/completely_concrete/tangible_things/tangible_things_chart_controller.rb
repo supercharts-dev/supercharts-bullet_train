@@ -35,7 +35,7 @@ class Account::Scaffolding::CompletelyConcrete::TangibleThings::TangibleThingsCh
     date_format_abbr = if @period == :day
       "%e"
     elsif @period == :week
-      "%b %e"
+      "Week of %b %e"
     elsif @period == :month
       "%b"
     end
@@ -43,7 +43,7 @@ class Account::Scaffolding::CompletelyConcrete::TangibleThings::TangibleThingsCh
     date_format_full = if @period == :day
       "%B %e"
     elsif @period == :week
-      "%B %e"
+      "week of %B %e"
     elsif @period == :month
       "%B, %Y"
     end
