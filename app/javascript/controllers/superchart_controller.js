@@ -45,7 +45,7 @@ export default class extends SuperchartChartjsController {
   }
   
   parseCsvData() {
-    this.csvData = d3.csvParse(this.csvDataTarget.innerHTML.trim(), d3.autoType)
+    this.csvData = d3.csvParse(this.csvDataTarget.innerHTML.trim())
   }
   
   get chartjsData() {
