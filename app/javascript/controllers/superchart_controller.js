@@ -1,5 +1,4 @@
-import { SuperchartChartjsController, parseContentsAsJSON } from '@supercharts/stimulus-base'
-import * as d3 from "d3"
+import { SuperchartChartjsController, parseContentsAsJSON, parseContentsAsCsv } from '@supercharts/stimulus-base'
 
 export default class extends SuperchartChartjsController {
   static targets = [ "chartjsOptions", "chartjsData", "chartjsCanvas", "csvData" ]
@@ -45,7 +44,7 @@ export default class extends SuperchartChartjsController {
   }
   
   parseCsvData() {
-    this.csvData = d3.csvParse(this.csvDataTarget.innerHTML.trim())
+    this.csvData = parseContentsAsCsv(this.csvDataTarget)
   }
   
   get chartjsData() {

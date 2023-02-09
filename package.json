@@ -46,7 +46,6 @@
   },
   "dependencies": {
     "@hotwired/stimulus": "^3.1.0",
-    "@supercharts/stimulus-base": "^1.0.0",
-    "d3": "^7.6.1"
+    "@supercharts/stimulus-base": "^1.1.2"
   }
 }

@@ -20,17 +20,19 @@ class Account::Scaffolding::CompletelyConcrete::TangibleThings::TangibleThingsCh
       else
         @period = :day
       end
-      data = @tangible_things.group_by_period(@period, :created_at, range: range, expand_range: true).count
+      series = @tangible_things.group_by_period(@period, :created_at, range: range, expand_range: true)
     when "1w"
-      range = (1.weeks.ago)..Time.now
+      range = (1.weeks.ago.beginning_of_day)..Time.now
       @period = :day
-      data = @tangible_things.group_by_period(@period, :created_at, range: range, expand_range: true).count
+      series = @tangible_things.group_by_period(@period, :created_at, range: range, expand_range: true)
     else
+      range = (1.month.ago + 1.day).beginning_of_day..Time.now
       @period = :day
-      data = @tangible_things.group_by_period(@period, :created_at, last: 30).count
+      series = @tangible_things.group_by_period(@period, :created_at, range: range)
     end
     
-    @total = data.values.reduce(:+)
+    counts = series.count
+    @total = counts.values.reduce(:+)
     
     date_format_abbr = if @period == :day
       "%e"
@@ -48,9 +50,9 @@ class Account::Scaffolding::CompletelyConcrete::TangibleThings::TangibleThingsCh
       "%B, %Y"
     end
     
-    @csv = CSV.generate(" ", headers: %w[date_abbr date_full value value_formatted], write_headers: true, encoding: "UTF-8") do |csv|
-      data.each do |date, value|
-        csv.add_row [date.strftime(date_format_abbr), date.strftime(date_format_full), value, number_with_delimiter(value)]
+    @csv = CSV.generate(" ", headers: %w[date_abbr date_full count count_formatted], write_headers: true, encoding: "UTF-8") do |csv|
+      counts.each do |date, count|
+        csv.add_row [date.strftime(date_format_abbr), date.strftime(date_format_full), count, number_with_delimiter(count)]
       end
     end
   end
