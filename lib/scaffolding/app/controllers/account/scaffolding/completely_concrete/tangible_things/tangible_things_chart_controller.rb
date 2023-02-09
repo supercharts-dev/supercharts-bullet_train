@@ -22,12 +22,13 @@ class Account::Scaffolding::CompletelyConcrete::TangibleThings::TangibleThingsCh
       end
       data = @tangible_things.group_by_period(@period, :created_at, range: range, expand_range: true).count
     when "1w"
-      range = (1.weeks.ago)..Time.now
+      range = (1.weeks.ago.beginning_of_day)..Time.now
       @period = :day
       data = @tangible_things.group_by_period(@period, :created_at, range: range, expand_range: true).count
     else
+      range = (1.month.ago + 1.day).beginning_of_day..Time.now
       @period = :day
-      data = @tangible_things.group_by_period(@period, :created_at, last: 30).count
+      data = @tangible_things.group_by_period(@period, :created_at, range: range).count
     end
     
     @total = data.values.reduce(:+)
