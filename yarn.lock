@@ -1186,13 +1186,14 @@
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-4.6.0.tgz#3c7c9c46e678feefe7a2e5bb609d3dbd665ffb3f"
   integrity sha512-t09vSN3MdfsyCHoFcTRCH/iUtG7OJ0CsjzB8cjAmKc/va/kIgeDI/TxsigdncE/4be734m0cvIYwNaV4i2XqAw==
 
-"@supercharts/stimulus-base@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@supercharts/stimulus-base/-/stimulus-base-1.0.0.tgz#ba5e8727dddd64e702ca969718fbaf4d758edf09"
-  integrity sha512-7XTHtIwjKLe9dy5rrki7lueCz9Z4SsCA/VTCywBBMCVZOHVDXoFBJYeaMFay5Xzo+INzoKWToA/FNjHEnZZenA==
+"@supercharts/stimulus-base@^1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@supercharts/stimulus-base/-/stimulus-base-1.1.2.tgz#04d0471a5a23db71f63cec793c6a0ee2c28d28b1"
+  integrity sha512-7TM3RSBi1t0UGHPp+Bu62/dVuS6rJriEbF+6LX+xEzRQNOlw/P7U7Im99PUKmOLNn/yUUszy7DgKRqJl1XpgRQ==
   dependencies:
     "@hotwired/stimulus" "^3.1.0"
     chart.js "^3.9.1"
+    d3 "^7.8.2"
 
 "@surma/rollup-plugin-off-main-thread@^2.2.2":
   version "2.2.3"
@@ -2202,6 +2203,42 @@ d3@^7.6.1:
   version "7.6.1"
   resolved "https://registry.yarnpkg.com/d3/-/d3-7.6.1.tgz#b21af9563485ed472802f8c611cc43be6c37c40c"
   integrity sha512-txMTdIHFbcpLx+8a0IFhZsbp+PfBBPt8yfbmukZTQFroKuFqIwqswF0qE5JXWefylaAVpSXFoKm3yP+jpNLFLw==
+  dependencies:
+    d3-array "3"
+    d3-axis "3"
+    d3-brush "3"
+    d3-chord "3"
+    d3-color "3"
+    d3-contour "4"
+    d3-delaunay "6"
+    d3-dispatch "3"
+    d3-drag "3"
+    d3-dsv "3"
+    d3-ease "3"
+    d3-fetch "3"
+    d3-force "3"
+    d3-format "3"
+    d3-geo "3"
+    d3-hierarchy "3"
+    d3-interpolate "3"
+    d3-path "3"
+    d3-polygon "3"
+    d3-quadtree "3"
+    d3-random "3"
+    d3-scale "4"
+    d3-scale-chromatic "3"
+    d3-selection "3"
+    d3-shape "3"
+    d3-time "3"
+    d3-time-format "4"
+    d3-timer "3"
+    d3-transition "3"
+    d3-zoom "3"
+
+d3@^7.8.2:
+  version "7.8.2"
+  resolved "https://registry.yarnpkg.com/d3/-/d3-7.8.2.tgz#2bdb3c178d095ae03b107a18837ae049838e372d"
+  integrity sha512-WXty7qOGSHb7HR7CfOzwN1Gw04MUOzN8qh9ZUsvwycIMb4DYMpY9xczZ6jUorGtO6bR9BPMPaueIKwiDxu9uiQ==
   dependencies:
     d3-array "3"
     d3-axis "3"
