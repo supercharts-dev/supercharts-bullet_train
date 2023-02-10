@@ -2,8 +2,15 @@
   first ||= false
   last ||= false
   label ||= "link"
+  alt ||= nil
   path ||= ""
   button_classes = "px-5 py-1.5 dark:text-white font-small text-xs leading-tight uppercase hover:bg-blue-800/50 hover:text-white focus:bg-blue-700 focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out rounded-lg"
+  options = {
+    class: [button_classes, "bg-gray-400 dark:bg-blue-800 text-white hover:bg-blue-400 dark:hover:bg-blue-800/100": current_page?(path)]
+  }
+  unless alt.nil?
+    options[:title] = alt.upcase_first
+  end
 %>
 
-<%= link_to label, path, class: [button_classes, "bg-gray-400 dark:bg-blue-800 text-white hover:bg-blue-400 dark:hover:bg-blue-800/100": current_page?(path)] %>
+<%= link_to label, path, options %>

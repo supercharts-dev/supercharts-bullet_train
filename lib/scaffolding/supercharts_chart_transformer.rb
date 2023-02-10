@@ -1,6 +1,9 @@
 require "scaffolding/supercharts_transformer"
 
 class Scaffolding::SuperchartsChartTransformer < Scaffolding::SuperchartsTransformer
+  
+  RUBY_NEW_CHARTS_HOOK = "# 📈 super scaffolding will insert new charts above this line."
+  
   def scaffold_supercharts
     super
     
@@ -19,13 +22,63 @@ class Scaffolding::SuperchartsChartTransformer < Scaffolding::SuperchartsTransfo
       end
     end
     
+    # locale
+    locale_file = "./config/locales/en/scaffolding/completely_concrete/tangible_things.en.yml"
+    
+    # add locale file if missing
+    unless File.file?(transform_string(locale_file))
+      scaffold_file(locale_file)
+      add_locale_helper_export_fix
+    end
+    
+    # add locale strings for chart
+    scaffold_add_line_to_file(locale_file, RUBY_NEW_CHARTS_HOOK, "  account:", prepend: true, increase_indent: true, exact_match: true)
+    # ensure the right indentation
+    scaffold_replace_line_in_file(locale_file, "    #{RUBY_NEW_CHARTS_HOOK}", "  #{RUBY_NEW_CHARTS_HOOK}")
+    
+    locale_yaml = <<~YAML
+      chart:
+        filters:
+          1w: 
+            abbr: 1w
+            label: "last week"
+          1m:
+            abbr: 1m
+            label: "last month"
+          ytd:
+            abbr: ytd
+            label: "year to date"
+        description:
+          1w: Tangible Things last 7 days
+          1m: Tangible Things last month
+          ytd: Tangible Things since start of year
+        contextual_description:
+          1w: Tangible Things on <span class="whitespace-nowrap">%label%</span>
+          1m: Tangible Things in <span class="whitespace-nowrap">%label%</span>
+          ytd: Tangible Things in <span class="whitespace-nowrap">%label%</span>
+        alt_description:
+          1w: Chart of Tangible Things last 7 days
+          1m: Chart of Tangible Things last month
+          ytd: Chart of Tangible Things since start of year
+        date_abbr:
+          day: "%e"
+          week: "Week of %b %e"
+          month: "%b"
+        date_full:
+          day: "%B %e"
+          week: "week of %B %e"
+          month: "%B, %Y"
+    YAML
+    
+    scaffold_add_line_to_file("./config/locales/en/scaffolding/completely_concrete/tangible_things.en.yml", locale_yaml, RUBY_NEW_CHARTS_HOOK, prepend: true)
+    
     # add children to the show page of their parent.
     unless cli_options["skip-parent"] || parent == "None"
       lines_to_add = <<~RUBY
         <div class="mt-4 [--chart-height:150px] md:[--chart-height:200px]">
           <%= turbo_frame_tag :charts_tangible_things, src: polymorphic_path([:account, @creative_concept, :tangible_things, :chart], timespan: "1m") do %>
             <%= render "shared/supercharts/chart_skeleton" do %>
-              Tangible Things&hellip;
+              <%= t('tangible_things.label') %>&hellip;
             <% end %>
           <% end %>
         </div>
