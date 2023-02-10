@@ -19,14 +19,14 @@ module BulletTrain
             puts ""
             exit
           end
-          
+
           target_model, parent_models = argv
           parent_models = parent_models.split(",")
           parent_models += ["Team"]
           parent_models = parent_models.map(&:classify).uniq
 
           transformer = Scaffolding::SuperchartsChartTransformer.new(target_model, parent_models)
-          
+
           transformer.scaffold_supercharts
         end
       end
