@@ -24,13 +24,7 @@
         <div class="relative">
           <div data-supercharts--describable-target="overallDescription">
             <h2 class="text-xs uppercase dark:text-white/50">
-              <% if @timespan == "1w" %>
-                Tangible Things last 7 days
-              <% elsif @timespan == "1m" %>
-                Tangible Things last month
-              <% elsif @timespan == "ytd" %>
-                Tangible Things since start of year
-              <% end %>
+              <%= t(['tangible_things.chart.description', @timespan].join('.')) %>
             </h2>
             <p class="font-semibold dark:text-white mt-2" style="font-size: 1.8rem;">
               <%= @total %>
@@ -40,13 +34,7 @@
           <template data-supercharts--describable-target="contextualDescriptionTemplate">
             <p class="font-semibold dark:text-white mb-1" style="font-size: 1.6rem;">%value%</p>
             <p class="text-xs uppercase dark:text-white/50">
-              <% if @period == :day %>
-                Tangible Things on <span class="whitespace-nowrap">%label%</span>
-              <% elsif @period == :week %>
-                Tangible Things in <span class="whitespace-nowrap">%label%</span>
-              <% elsif @period == :month %>
-                Tangible Things in <span class="whitespace-nowrap">%label%</span>
-              <% end %>
+              <%= t(['tangible_things.chart.contextual_description', @timespan].join('.')).html_safe %>
             </p>
           </template>
         </div>
@@ -56,9 +44,9 @@
           >
             <div class="flex items-center justify-center">
               <div class="inline-flex space-x-1" role="group">
-                <%= render "shared/supercharts/filter_button", path: polymorphic_path([:account, @absolutely_abstract_creative_concept, :tangible_things, :chart], timespan: "1w"), label: "1w", first: true %>
-                <%= render "shared/supercharts/filter_button", path: polymorphic_path([:account, @absolutely_abstract_creative_concept, :tangible_things, :chart], timespan: "1m"), label: "1m" %>
-                <%= render "shared/supercharts/filter_button", path: polymorphic_path([:account, @absolutely_abstract_creative_concept, :tangible_things, :chart], timespan: "ytd"), label: "ytd", last: true %>
+                <%= render "shared/supercharts/filter_button", label: t("tangible_things.chart.filters.1w.abbr"), alt: t("tangible_things.chart.filters.1w.label"), path: polymorphic_path([:account, @absolutely_abstract_creative_concept, :tangible_things, :chart], timespan: "1w"), first: true %>
+                <%= render "shared/supercharts/filter_button", label: t("tangible_things.chart.filters.1m.abbr"), alt: t("tangible_things.chart.filters.1m.label"), path: polymorphic_path([:account, @absolutely_abstract_creative_concept, :tangible_things, :chart], timespan: "1m") %>
+                <%= render "shared/supercharts/filter_button", label: t("tangible_things.chart.filters.ytd.abbr"), alt: t("tangible_things.chart.filters.ytd.label"), path: polymorphic_path([:account, @absolutely_abstract_creative_concept, :tangible_things, :chart], timespan: "ytd"), last: true %>
               </div>
             </div>
             <template data-supercharts--filters-target="data">
@@ -77,13 +65,7 @@
       data-action="update-chart->superchart#updateChart"
     >
       <canvas data-superchart-target="chartjsCanvas" style="height: var(--chart-height)">
-        <% if @timespan == "1w" %>
-          Chart of Tangible Things last 7 days
-        <% elsif @timespan == "1m" %>
-          Chart of Tangible Things last month
-        <% elsif @timespan == "ytd" %>
-          Chart of Tangible Things since start of year
-        <% end %>
+        <%= t(['tangible_things.chart.alt_description', @timespan].join('.')) %>
       </canvas>
       <template data-superchart-target="csvData" data-supercharts--filterable-target="chartSourceData"></template>
       <template data-superchart-target="chartjsOptions"></template>

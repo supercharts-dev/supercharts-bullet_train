@@ -34,21 +34,8 @@ class Account::Scaffolding::CompletelyConcrete::TangibleThings::TangibleThingsCh
     counts = series.count
     @total = counts.values.reduce(:+)
     
-    date_format_abbr = if @period == :day
-      "%e"
-    elsif @period == :week
-      "Week of %b %e"
-    elsif @period == :month
-      "%b"
-    end
-    
-    date_format_full = if @period == :day
-      "%B %e"
-    elsif @period == :week
-      "week of %B %e"
-    elsif @period == :month
-      "%B, %Y"
-    end
+    date_format_abbr = t(['tangible_things.chart.date_abbr', @period].join('.'))
+    date_format_full = t(['tangible_things.chart.date_full', @period].join('.'))
     
     @csv = CSV.generate(" ", headers: %w[date_abbr date_full count count_formatted], write_headers: true, encoding: "UTF-8") do |csv|
       counts.each do |date, count|
