@@ -147,12 +147,12 @@ For the following types of changes, you'll need to create your own Stimulus cont
 If you just want to make aesthetic changes, you can change the following css variables found at the top of your scaffolded `show.html.erb`. In this case, these are all TailwindCSS classes that set the appropriate custom CSS properties scoped to just that chart.
 
 ```html
-[--axis-color:theme('colors.gray.300')] dark:[--axis-color:theme('colors.darkPrimary.500')]
-[--grid-color:theme('colors.gray.100')] dark:[--grid-color:theme('colors.darkPrimary.800')]
+[--axis-color:theme('colors.gray.300')] dark:[--axis-color:theme('colors.slate.500')]
+[--grid-color:theme('colors.gray.100')] dark:[--grid-color:theme('colors.slate.800')]
 [--line-color:#a86fe7]
 [--point-color:theme('colors.gray.800')] dark:[--point-color:theme('colors.white')]
-[--point-stroke-color:theme('colors.white')] dark:[--point-stroke-color:theme('colors.darkPrimary.700')]
-[--point-stroke-color-hover:theme('colors.gray.100')] dark:[--point-stroke-color-hover:theme('colors.darkPrimary.800')]
+[--point-stroke-color:theme('colors.white')] dark:[--point-stroke-color:theme('colors.slate.700')]
+[--point-stroke-color-hover:theme('colors.gray.100')] dark:[--point-stroke-color-hover:theme('colors.slate.800')]
 [--bar-fill-color:var(--line-color)]
 [--bar-hover-fill-color:var(--point-color)]
 [--point-radius:4] md:[--point-radius:6]
