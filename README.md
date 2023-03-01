@@ -118,7 +118,7 @@ bin/rails r db/seeds/click_throughs.rb
 
 Visit your app in `localhost:3000` and you should see your new chart.
 
-![Example chart inside a Bullet Train app showing Click Throughs in the last 30 days](https://user-images.githubusercontent.com/104179/198366639-cd73eba5-eeb7-4654-bb35-8b0415b964c8.gif)
+![Example chart inside a Bullet Train app showing Click Throughs in the last 30 days](https://user-images.githubusercontent.com/104179/222187945-1ff4a8c5-96d1-40e8-b421-d48c6cc4425d.gif)
 
 ## Modifying the chart
 
