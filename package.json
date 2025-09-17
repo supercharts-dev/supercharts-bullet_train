@@ -22,7 +22,7 @@
     "update-local-installs": "$npm_execpath run build; yalc push",
     "prerelease": "$npm_execpath run build",
     "release": "np --any-branch",
-    "postinstall": "node -e \"console.error('\\n\\x1b[31mDEPRECATED:\\x1b[0m This package is retired. Eject files locally. See README.\\n')\""
+    "postinstall": "node -e \"console.error('\\n\\x1b[31mDEPRECATED:\\x1b[0m The @supercharts/supercharts-bullet-train package is retired. Eject files locally. See README.\\n')\""
   },
   "repository": "git@github.com:supercharts-dev/supercharts-bullet_train.git",
   "author": "Pascal Laliberté <pascal@hey.com>",
@@ -40,7 +40,7 @@
     "@hotwired/stimulus-webpack-helpers": "^1.0.1",
     "babel-loader": "^8.2.5",
     "microbundle": "^0.15.1",
-    "np": "^7.6.2",
+    "np": "^10.2.0",
     "npm-watch": "^0.11.0",
     "rimraf": "^3.0.2",
     "yalc": "^1.0.0-pre.53"
