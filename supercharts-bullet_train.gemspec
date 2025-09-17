@@ -23,4 +23,6 @@ Gem::Specification.new do |spec|
   end
 
   spec.add_dependency "rails", ">= 6.0.0"
+
+  spec.post_install_message = "⚠️ DEPRECATED: This package is retired. Eject files locally. See README."
 end
