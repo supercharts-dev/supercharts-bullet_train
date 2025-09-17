@@ -12,6 +12,10 @@ To run everything locally and remove the dependency, eject the view partials and
 
 ## CHANGELOG
 
+### v1.3.1
+
+**Deprecate the package.**
+
 ### v1.3.0
 
 **Support for Bullet Train's new theme colors, removes `darkPrimary` color**
